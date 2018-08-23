@@ -6,6 +6,8 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
 
+Spotify.getAccessToken();
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -45,6 +47,7 @@ class App extends Component {
     this.setState({playlistTracks: []});
     this.updatePlayListName('New Playlist');
   }
+
   
   search(term) {
     Spotify.search(term).then(searchResults => 
@@ -61,8 +64,7 @@ class App extends Component {
           <div className="App-playlist">
             <SearchResults
               searchResults={this.state.searchResults} 
-              onAdd={this.addTrack} 
-              onSearch={this.search} />
+              onAdd={this.addTrack} />
             <Playlist 
               playlistName={this.state.playlistName} 
               playlistTracks={this.state.playlistTracks} 

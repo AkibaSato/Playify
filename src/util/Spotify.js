@@ -1,6 +1,6 @@
 const clientId = '7a787c5bb7974320b8dc510abfcb70d3';
-// const redirectUri = 'asato_playify.surge.sh';
-const redirectUri = 'localhost:3000';
+// const redirectUri = 'https://asato_playify.surge.sh';
+const redirectUri = 'https://localhost:3000';
 const spotifyUrl = `https://accounts.spotify.com/authorize?response_type=token&scope=playlist-modify-public&client_id=${clientId}&redirect_uri=${redirectUri}`;
 
 let accessToken = undefined;
@@ -9,6 +9,7 @@ let expiresIn = undefined;
 const Spotify = {
   getAccessToken() {
     if (accessToken) {
+      console.log("ACCESS TOKEN FOUND");
       return accessToken;
     }
 
@@ -22,6 +23,7 @@ const Spotify = {
       window.setTimeout(() => accessToken = '', expiresIn * 1000);
       window.history.pushState('Access Token', null, '/');
     } else {
+      console.log("AUTHENTICATE");
       window.location = spotifyUrl;
     }
   },
