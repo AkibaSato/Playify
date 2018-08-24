@@ -54,13 +54,10 @@ class App extends Component {
   }
 
   updateTerm(term) {
-    console.log(term);
     this.setState({searchTerm: term});
-    console.log(this.state.searchTerm);
   }
   
   search() {
-    console.log(this.state.searchTerm);
     if (this.state.searchTerm.length > 0) {
       Spotify.search(this.state.searchTerm).then(results => 
         this.setState({searchResults: results})

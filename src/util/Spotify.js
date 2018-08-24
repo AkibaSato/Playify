@@ -10,7 +10,6 @@ let expiresIn = undefined;
 const Spotify = {
   getAccessToken() {
     if (accessToken) {
-      console.log("ACCESS TOKEN FOUND");
       return accessToken;
     }
 
@@ -19,7 +18,6 @@ const Spotify = {
 
 
     if (urlAccess && urlExpire) {
-      console.log("GET ACCESS");
 
       accessToken = urlAccess[1];
       expiresIn = urlExpire[1];
@@ -27,24 +25,11 @@ const Spotify = {
       window.setTimeout(() => accessToken = '', expiresIn * 1000);
       window.history.pushState('Access Token', null, '/');
     } else {
-      console.log("AUTHENTICATE");
       window.location = spotifyUrl;
     }
   },
 
   search(term) {
-    // return () => {
-    //     return new Promise((resolve) => {
-    //       [{
-    //         id: 1,
-    //         name: 'TestName',
-    //         artist: 'TestArtist',
-    //         album: 'TestAlbum',
-    //         uri: 'TestURI'
-    //       }]
-    //     });
-    // };
-
     try {
       Spotify.getAccessToken();
       const searchUrl = `https://api.spotify.com/v1/search?type=track&q=${term}`;
@@ -57,7 +42,6 @@ const Spotify = {
         .then(jsonResponse => {
           if (!jsonResponse.tracks) return [];
           return jsonResponse.tracks.items.map(track => {
-            console.log(track);
             return {
               id: track.id,
               name: track.name,
