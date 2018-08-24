@@ -20,7 +20,7 @@ class App extends Component {
     
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
-    this.updatePlayListName = this.updatePlayListName.bind(this);
+    this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
     this.updateTerm = this.updateTerm.bind(this);
@@ -39,7 +39,7 @@ class App extends Component {
     this.setState({playlistTracks: this.state.playlistTracks.filter(playlistTrack => playlistTrack.id !== track.id)})
   }
   
-  updatePlayListName(name) {
+  updatePlaylistName(name) {
     this.setState({playlistName: name});
   }
   
@@ -47,7 +47,7 @@ class App extends Component {
     const trackUris = this.state.playlistTracks.map(playlistTrack => playlistTrack.uri);
     Spotify.savePlaylist(this.state.playlistName, trackUris)
     this.setState({playlistTracks: []});
-    this.updatePlayListName('New Playlist');
+    this.updatePlaylistName('Test');
   }
 
   updateTerm(term) {
@@ -83,7 +83,7 @@ class App extends Component {
               playlistName={this.state.playlistName} 
               playlistTracks={this.state.playlistTracks} 
               onRemove={this.removeTrack} 
-              onNameChange={this.updatePlayListName} 
+              onNameChange={this.updatePlaylistName} 
               onSave={this.savePlaylist} />
           </div>
         </div>
