@@ -19,7 +19,7 @@ const Spotify = {
 
     console.log(urlAccess + " " + urlExpire);
 
-    if (urlAccess & urlExpire) {
+    if (urlAccess && urlExpire) {
       accessToken = urlAccess[1];
       expiresIn = urlExpire[1];
 
