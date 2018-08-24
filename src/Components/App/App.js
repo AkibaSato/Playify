@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       searchResults: [],
       playlistName: 'New Playlist',
-      playlistTracks: []
+      playlistTracks: [],
+      searchTerm: ''
     }
     
     this.addTrack = this.addTrack.bind(this);
@@ -48,10 +49,15 @@ class App extends Component {
     this.updatePlayListName('New Playlist');
   }
 
-  
-  search(term) {
+  updateTerm(term) {
     console.log(term);
-    Spotify.search(term).then(results => {
+    this.setState({searchTerm: term});
+    console.log(this.state.searchTerm);
+  }
+  
+  search() {
+    console.log(this.state.searchTerm);
+    Spotify.search(this.state.searchTerm).then(results => {
       this.setState({searchResults: results});
       console.log(results);
       console.log(results.length);
@@ -63,7 +69,9 @@ class App extends Component {
       <div>
         <h1>Pl<span className="highlight">ayi</span>fy</h1>
         <div className="App">
-          <SearchBar onSearch={this.search}/>
+          <SearchBar 
+            onSearch={this.search} 
+            onTermChange={this.updateTerm} />
           <div className="App-playlist">
             <SearchResults
               searchResults={this.state.searchResults} 
