@@ -8,13 +8,13 @@ class SearchBar extends Component {
     this.handleTermChange = this.handleTermChange.bind(this);
   }
   
-  search(term) {
-    this.props.onSearch(term);
+  search() {
+    this.props.onSearch();
     console.log("SEARCH BAR SEARCH");
   }
   
   handleTermChange(e) {
-    this.search(e.target.value);
+    this.props.onTermChange(e.target.value);
   }
   
   render() {
