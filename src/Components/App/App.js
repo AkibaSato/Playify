@@ -6,7 +6,7 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
 
-Spotify.getAccessToken();
+// Spotify.getAccessToken();
 
 class App extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ class App extends Component {
     this.updatePlayListName = this.updatePlayListName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
+    this.updateTerm = this.updateTerm.bind(this);
   }
   
   addTrack(track) {
@@ -57,11 +58,13 @@ class App extends Component {
   
   search() {
     console.log(this.state.searchTerm);
-    Spotify.search(this.state.searchTerm).then(results => {
-      this.setState({searchResults: results});
-      console.log(results);
-      console.log(results.length);
-    });
+    if (this.state.searchTerm.length > 0) {
+      return Spotify.search(this.state.searchTerm).then(results => 
+        this.setState({searchResults: results})
+      );
+    } else {
+      this.setState({searchResults: []});
+    }
   }
   
   render() {
