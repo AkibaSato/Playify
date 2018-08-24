@@ -1,7 +1,7 @@
 const clientId = '7a787c5bb7974320b8dc510abfcb70d3';
 // const redirectUri = 'https://asato_playify.surge.sh';
-const redirectUri = 'https://localhost:3000';
-// const redirectUri = 'https://asato-playify.herokuapp.com';
+// const redirectUri = 'https://localhost:3000/';
+const redirectUri = 'https://asato-playify.herokuapp.com';
 const spotifyUrl = `https://accounts.spotify.com/authorize?response_type=token&scope=playlist-modify-public&client_id=${clientId}&redirect_uri=${redirectUri}`;
 
 let accessToken = undefined;
