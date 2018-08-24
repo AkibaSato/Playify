@@ -9,10 +9,10 @@ class Track extends Component {
   }
   
   renderAction() {
-    if (this.props.isRemoval) {
-      return <a className="Track-action" onClick={this.removeTrack}>-</a>
-    } else {
+    if (this.props.onAdd) {
       return <a className="Track-action" onClick={this.addTrack}>+</a>
+    } else {
+      return <a className="Track-action" onClick={this.removeTrack}>-</a>
     }
   }
   
