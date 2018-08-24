@@ -5,6 +5,8 @@ import TrackList from '../TrackList/TrackList';
 
 class SearchResults extends Component {
   render() {
+    console.log("SEARCH RESULTS");
+    
     return (
       <div className="SearchResults">
         <h2>Results</h2>
