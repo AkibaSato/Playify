@@ -22,7 +22,7 @@ class SearchBar extends Component {
       <div className="SearchBar">
         <input 
         placeholder="Enter A Song, Album, or Artist"
-        onChange={this.handleNameChange} />
+        onChange={this.handleTermChange} />
         <a>SEARCH</a>
       </div>
     );
