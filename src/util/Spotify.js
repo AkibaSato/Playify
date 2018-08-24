@@ -1,7 +1,7 @@
 const clientId = '7a787c5bb7974320b8dc510abfcb70d3';
 // const redirectUri = 'https://asato_playify.surge.sh';
-// const redirectUri = 'https://localhost:3000';
-const redirectUri = 'https://asato-playify.herokuapp.com';
+const redirectUri = 'https://localhost:3000';
+// const redirectUri = 'https://asato-playify.herokuapp.com';
 const spotifyUrl = `https://accounts.spotify.com/authorize?response_type=token&scope=playlist-modify-public&client_id=${clientId}&redirect_uri=${redirectUri}`;
 
 let accessToken = undefined;
@@ -34,24 +34,23 @@ const Spotify = {
   search(term) {
     const searchUrl = `https://api.spotify.com/v1/search?type=track&q=${term.replace(' ', '%20')}`;
     return fetch(searchUrl, {
-      headers: {Authorization: `Bearer ${accessToken}`}
-    })
-    .then(response => response.json())
-    .then(jsonResponse => {
-      if (!jsonResponse.tracks) {
-        return [];
-      } else {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      .then(response => response.json())
+      .then(jsonResponse => {
+        if (!jsonResponse.tracks) return [];
         return jsonResponse.tracks.items.map(track => {
           return {
             id: track.id,
             name: track.name,
             artist: track.artists[0].name,
-            album: track.album,
-            url: track.uri
+            album: track.album.name,
+            uri: track.uri
           }
-        });
-      }
-    });
+        })
+      });
   },
 
   savePlaylist(name, trackUris) {
