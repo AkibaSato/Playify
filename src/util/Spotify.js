@@ -33,43 +33,43 @@ const Spotify = {
   },
 
   search(term) {
-    return () => {
-        return new Promise((resolve) => {
-          [{
-            id: 1,
-            name: 'TestName',
-            artist: 'TestArtist',
-            album: 'TestAlbum',
-            uri: 'TestURI'
-          }]
-        });
-    };
-
-    // try {
-    //   Spotify.getAccessToken();
-    //   const searchUrl = `https://api.spotify.com/v1/search?type=track&q=${term}`;
-    //   return fetch(searchUrl, {
-    //       headers: {
-    //         Authorization: `Bearer ${accessToken}`
-    //       }
-    //     })
-    //     .then(response => response.json())
-    //     .then(jsonResponse => {
-    //       if (!jsonResponse.tracks) return [];
-    //       return jsonResponse.tracks.items.map(track => {
-    //         console.log(track);
-    //         return {
-    //           id: track.id,
-    //           name: track.name,
-    //           artist: track.artists[0].name,
-    //           album: track.album.name,
-    //           uri: track.uri
-    //         }
-    //       })
+    // return () => {
+    //     return new Promise((resolve) => {
+    //       [{
+    //         id: 1,
+    //         name: 'TestName',
+    //         artist: 'TestArtist',
+    //         album: 'TestAlbum',
+    //         uri: 'TestURI'
+    //       }]
     //     });
-    // } catch(error) {
-    //   console.log(error);
-    // }
+    // };
+
+    try {
+      Spotify.getAccessToken();
+      const searchUrl = `https://api.spotify.com/v1/search?type=track&q=${term}`;
+      return fetch(searchUrl, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        })
+        .then(response => response.json())
+        .then(jsonResponse => {
+          if (!jsonResponse.tracks) return [];
+          return jsonResponse.tracks.items.map(track => {
+            console.log(track);
+            return {
+              id: track.id,
+              name: track.name,
+              artist: track.artists[0].name,
+              album: track.album.name,
+              uri: track.uri
+            }
+          })
+        });
+    } catch(error) {
+      console.log(error);
+    }
   },
 
   savePlaylist(name, trackUris) {
