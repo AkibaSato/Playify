@@ -59,7 +59,7 @@ class App extends Component {
   search() {
     console.log(this.state.searchTerm);
     if (this.state.searchTerm.length > 0) {
-      return Spotify.search(this.state.searchTerm).then(results => 
+      Spotify.search(this.state.searchTerm).then(results => 
         this.setState({searchResults: results})
       );
     } else {

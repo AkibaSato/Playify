@@ -33,13 +33,17 @@ const Spotify = {
   },
 
   search(term) {
-    return [{
-      id: 1,
-      name: 'TestName',
-      artist: 'TestArtist',
-      album: 'TestAlbum',
-      uri: 'TestURI'
-    }]
+    return () => {
+        return new Promise((resolve) => {
+          [{
+            id: 1,
+            name: 'TestName',
+            artist: 'TestArtist',
+            album: 'TestAlbum',
+            uri: 'TestURI'
+          }]
+        });
+    };
 
     // try {
     //   Spotify.getAccessToken();
